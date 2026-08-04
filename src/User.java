@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+public class User {
+    private int id;
+    private String nom;
+    private ArrayList<Document> doc_emprunte;
+    private int max_emprunt = 3;
+
+    public User(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+        doc_emprunte = new ArrayList<>();
+    }
+
+    public void emprunterDoc(Document document) {
+        if (doc_emprunte.size() >= max_emprunt) {
+            System.out.println("Nombre maximal atteint");
+            return;
+        } else {
+            if (document.estdisponible()) {
+                document.emprunter();
+                doc_emprunte.add(document);
+            } else {
+                System.out.println("Document non disponible");
+            }
+        }}
+        public void retournerDoc (Document document){
+            document.retourner();
+            doc_emprunte.remove(document);
+        }
+    }
