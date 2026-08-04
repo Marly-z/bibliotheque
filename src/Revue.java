@@ -9,6 +9,6 @@ public class Revue extends Document {
 
     @Override
     public void afficherDetail() {
-        System.out.println("Auteur:" + auteur + "; année:" + annee + "titre:" + titre);
+        System.out.println("Auteur:" + auteur + "; année:" + annee + " titre:" + titre+ " Id:"+id+" type"+type+" Nombre de page:"+page);
     }
 }

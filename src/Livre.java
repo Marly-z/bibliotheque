@@ -7,7 +7,7 @@ public class Livre extends Document {
 
     @Override
     public void afficherDetail() {
-        System.out.println("Livre-id:" + id + " Titre: " + titre + "Auteur: " + " Page:" + " Année: " +
+        System.out.println("Livre-id:" + id + " Titre: " + titre + "Auteur: " +auteur+ " Page:" +page+ " Année: " +
         annee);
     }
 }

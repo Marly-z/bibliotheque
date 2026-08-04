@@ -5,6 +5,6 @@ public class Ebook extends Document{
     }
     @Override
     public  void afficherDetail(){
-        System.out.println("Id:" + id +"; Auteur:" +auteur+ "; année:" +annee+ "titre:"+titre );
+        System.out.println("Id:" + id +"; Auteur:" +auteur+ "; année:" +annee+ " titre:"+titre+" type:"+type );
     }
 }

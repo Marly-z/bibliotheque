@@ -4,15 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
          Scanner clavier = new Scanner(System.in);
-        ArrayList<Document> document = new ArrayList<>();
 
-        Livre livre = new Livre(1,"Yaounde","Eto'o","Livre",100,2026);
-        Revue revue = new Revue(10,"Bafoussam","Penka","Revue",200,2021);
-        Ebook ebook = new Ebook(8,"AbongMbang","Mazeka","Ebook",150,2019);
+        LectureCSV lecture=new LectureCSV();
+        ArrayList<Document> document=lecture.lireCSV("document.csv");
 
-        document.add(livre);
-        document.add(revue);
-        document.add(ebook);
+
         int choix;
           do {
               System.out.println("      BIBLIOTHÈQUE NUMÉRIQUE");
@@ -32,104 +28,127 @@ public class Main {
               switch (choix) {
                   case 1:
                       System.out.println("entrer le titre du livre à afficher");
-                      String titrerech= clavier.nextLine();
+                      String titrerech = clavier.nextLine();
+                      boolean trouve = false;
 
-                      for(document doc:document){
-                      if(doc.getTitre().equalsIgnoreCase(titrerech)){
-                         doc.afficherDetail();
-                      break;}
-                      else{
-                          System.out.println("Aucun document trouvé")
+                      for (Document doc : document) {
+                          if (doc.getTitre().equalsIgnoreCase(titrerech)) {
+                              doc.afficherDetail();
+                              trouve = true;
+                              break;
+                          }
                       }
-                      }}
-              }
+                      if (!trouve) {
+                          System.out.println("Aucun document trouvé");
+                      }
+
                       break;
                   case 2:
-        System.out.print("Id du document : ");
-        int id = clavier.nextInt();
-        clavier.nextLine();
+                      System.out.print("Id du document : ");
+                      int id = clavier.nextInt();
+                      clavier.nextLine();
 
-        System.out.print("Titre du document : ");
-        String titre = clavier.nextLine();
+                      System.out.print("Titre du document : ");
+                      String titre = clavier.nextLine();
 
-        System.out.print("Auteur du document : ");
-        String auteur = clavier.nextLine();
+                      System.out.print("Auteur du document : ");
+                      String auteur = clavier.nextLine();
 
-        System.out.print("Type du document (Livre/Revue/Ebook) : ");
-        String type = clavier.nextLine();
+                      System.out.print("Type du document (Livre/Revue/Ebook) : ");
+                      String type = clavier.nextLine();
 
-        System.out.print("Nombre de pages : ");
-        int page = clavier.nextInt();
+                      System.out.print("Nombre de pages : ");
+                      int page = clavier.nextInt();
 
-        System.out.print("Année de publication : ");
-        int annee = clavier.nextInt();
-        clavier.nextLine();
-        // Création du document selon le type choisi
+                      System.out.print("Année de publication : ");
+                      int annee = clavier.nextInt();
+                      clavier.nextLine();
+                      // Création du document selon le type choisi
 
-        if (type.equalsIgnoreCase("Livre")) {
+                       boolean ajoute=false;
+                      if (type.equalsIgnoreCase("Livre")) {
 
-            document.add(new Livre(id, titre, auteur, type, page, annee));
+                          document.add(new Livre(id, titre, auteur, type, page, annee));
+                            ajoute=true;
+                      } else if (type.equalsIgnoreCase("Revue")) {
 
-        } else if (type.equalsIgnoreCase("Revue")) {
+                          document.add(new Revue(id, titre, auteur, type, page, annee));
+                            ajoute=true;
+                      } else if (type.equalsIgnoreCase("Ebook")) {
 
-            document.add(new Revue(id, titre, auteur, type, page, annee));
+                          document.add(new Ebook(id, titre, auteur, type, page, annee));
+                             ajoute=true;
+                      }
+                      if(!ajoute){
 
-        } else if (type.equalsIgnoreCase("Ebook")) {
+                          System.out.println("Type de document invalide.");
 
-            document.add(new Ebook(id, titre, auteur, type, page, annee));
+                      }
 
-        } else {
+                      System.out.println("Document ajouté avec succès.");
 
-            System.out.println("Type de document invalide.");
-
-        }
-
-
-        System.out.println("Document ajouté avec succès.");
-
-        break;
+                      break;
                   case 3:
-        System.out.print("Entrez le titre du document à emprunter : ");
-        String titreEmprunt = clavier.nextLine();
-        for (Document doc : document) {
-            if (doc.getTitre().equalsIgnoreCase(titreEmprunt)) {
-                doc.emprunter();
-                break;
-            }else{
-            System.out.println("Aucun document trouvé");
-        }
-        break;
-                  case 4:
-        System.out.print("Entrez le titre du document à retourner : ");
-        String titreRetour = clavier.nextLine();
-        for (Document doc : document) {
+                      System.out.print("Entrez le titre du document à emprunter : ");
+                      String titreEmprunt = clavier.nextLine();
 
-            if (doc.getTitre().equalsIgnoreCase(titreRetour)) {
-                doc.retourner();
-                break;
-            }else {
-            System.out.println("Aucun document trouvé ");
-        }
+                      boolean trouveEmprunt = false;
+                      for (Document doc : document) {
+                          if (doc.getTitre().equalsIgnoreCase(titreEmprunt)) {
+                              doc.emprunter();
+                              trouveEmprunt = true;
+                              break;
+                          }
+                      }
+                      if (!trouveEmprunt) {
+                          System.out.println("Aucun document trouvé");
+                      }
+                      break;
+                  case 4:
+                      System.out.println("Entrez le titre du document à retourner : ");
+                      String titreRetour = clavier.nextLine();
+                      boolean trouveRetour = false;
+                      for (Document doc : document) {
+
+                          if (doc.getTitre().equalsIgnoreCase(titreRetour)) {
+                              doc.retourner();
+                              trouveRetour = true;
+                              break;
+                          } }
+                       if(!trouveRetour){
+                              System.out.println("Aucun document trouvé ");
+                          }
+                      }
                       break;
 
                   case 5:
                       System.out.println("Documents disponibles");
-        for (Document doc : documents) {
-            if (doc.estdisponible()) {
-                doc.afficherDetail();}
-            else{ System.out.println("Aucun document disponible.");}
-                      break;
+                      boolean disponible = false;
+                      for (Document doc : document) {
+                          if (doc.estDisponible()) {
+                              doc.afficherDetail();
+                              disponible = true;
+                          }
+                      }
+                          if (!disponible) {
+                              System.out.println("Aucun document disponible.");
+                          }
+                          break;
 
-                  case 6:
-                      System.out.println("Sauvegarde du fichier CSV");
-                      break;
-                  case 7:
-                      System.out.println("Quitter");
-                      break;
-                  default:
-                      System.out.println("Choix invalide !");
+
+                          case 6:
+                              Sauvegarde sauvegarde = new Sauvegarde();
+                              sauvegarde.sauvegarderCSV(document);
+                              break;
+                          case 7:
+                              System.out.println("Quitter");
+                              break;
+                          default:
+                              System.out.println("Choix invalide !");
+                      }
               }
-          }while(choix!=7);
-               clavier.close();
+              while (choix != 7) ;
+              clavier.close();
+          }}
 
 
