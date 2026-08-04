@@ -14,7 +14,7 @@ public class Fichier {
             fichier.write("5,Bamenda,Soufo,Livre,60,2022,true\n");
             fichier.write("6,Nkongsamba,Effoudou,Livre,70,2021,true\n");
             fichier.write("7,Eseka,Panda,Livre,200,2020,true\n");
-            fichier.write("8,AbongMbang,Mazeka,Livre,150,2019,true\n");
+            fichier.write("8,AbongMbang,Mazeka,Ebook,150,2019,true\n");
             fichier.write("9,Garoua,Bell,Ebook,130,2020,true\n");
             fichier.write("10,Bafoussam,Penka,Revue,200,2021,true\n");
             fichier.write("11,Lolodorf,mava'ala,Livre,160,2022,true\n");

@@ -12,19 +12,28 @@ public class User {
     }
 
     public void emprunterDoc(Document document) {
+        max_emprunt=3
         if (doc_emprunte.size() >= max_emprunt) {
             System.out.println("Nombre maximal atteint");
             return;
         } else {
-            if (document.estdisponible()) {
+            if (document.estDisponible()) {
                 document.emprunter();
                 doc_emprunte.add(document);
+                System.out.println(nom + " a emprunté " + document.getTitre());
             } else {
                 System.out.println("Document non disponible");
             }
         }}
         public void retournerDoc (Document document){
-            document.retourner();
+            if (doc_emprunte.contains(document)) {
+        document.retourner();
             doc_emprunte.remove(document);
+            System.out.println("Document retourné : " + document.getTitre());
+             }
+            else{
+                System.out.println(
+                        "Cet utilisateur n'a pas emprunté ce document"
+                );}
         }
     }

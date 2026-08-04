@@ -19,41 +19,36 @@ public abstract class Document implements Empruntable {
         this.disponible = true;
     }
     public String getTitre(){
+
         return titre;
     }
+
     public abstract void afficherDetail();
 
-    // appelle les méthodes de l'interface
 
     @Override
     public void emprunter() {
 
-        if (disponible =true){
+        if (disponible){
             System.out.println("Le document:" + titre + "est disponible");
             disponible=false;
             System.out.println("Le document:" + titre + "emprunté avec succes");
         } else {
             System.out.println("Le document:" +titre+ "n'est pas disponible");
         }
-
-        if (disponible = false){
-        System.out.println("Le document:" + titre + "est déjà emprunté");
-        }
-        else {
-        System.out.println("Le document:" +titre+ "est disponible");
-    }}
+    }
 
     @Override
     public void retourner() {
-        if (disponible = true) {
+        if (disponible) {
             System.out.println("Le document:" + titre + "a été retouné");
         }else{
-            disponible=true;
             System.out.println("Le document:" + titre + "reourné avec succes");
         }
     }
     @Override
-    public boolean estdisponible() {
+    public boolean estDisponible() {
+
         return disponible;
     }
 }
